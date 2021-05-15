@@ -25,7 +25,6 @@ public class NIO2
         inChannel.close();
         aFile.close();
         
-        // ans is the minimum weight Hamiltonian Cycle
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
         System.out.println(timeElapsed);
