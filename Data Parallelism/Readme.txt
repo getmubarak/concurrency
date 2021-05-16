@@ -10,3 +10,6 @@ Fork:  Split larger task into smaller tasks. Ex: Task 1.1 splits to Task 1.1.1 a
 Join: Get result from immediate subtasks. Ex: Task 1.1 take results from Task 1.1.1 and Task 1.1.2
 
 The Fork/Join Framework makes use of a special kind of thread pool called FrkJoinPool
+
+The only feasible approach to tackling large-data problems is to divide and conquer.
+The master-slave pattern and Map Reduce Pattern works based on the divide and conquer principle
