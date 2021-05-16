@@ -1,9 +1,4 @@
 
-//This Java code will generate 10,000 random employees and save into 10,000 files, each employee save into a file.
-
-//For normal stream, it takes 27-29 seconds.
-//For parallel stream, it takes 7-8 seconds.
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,29 +20,60 @@ class Employee implements Serializable {
     private String name;
     private int age;
     private BigDecimal salary;
+    
+    
+    public Employee() {}
+    public Employee(String name,int age,BigDecimal salary) {
+		this.name = name;
+		this.age = age;
+		this.salary = salary;
+    }
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public BigDecimal getSalary() {
+		return salary;
+	}
+	public void setSalary(BigDecimal salary) {
+		this.salary = salary;
+	}
 
     //getters, setters n etc...
 
 }
 
-public class ParallelExample4 {
+public class Main {
 
     private static final String DIR = System.getProperty("user.dir") + "/test/";
 
     public static void main(String[] args) throws IOException {
 
-        Files.createDirectories(Paths.get(DIR));
-
-        ParallelExample4 obj = new ParallelExample4();
+    	long start = System.currentTimeMillis();
+        
+    	Files.createDirectories(Paths.get(DIR));
+    	System.out.println(Paths.get(DIR));	
+        Main obj = new Main();
 
         List<Employee> employees = obj.generateEmployee(10000);
 
         // normal, sequential
-        //employees.stream().forEach(ParallelExample5::save); 		// 27s-29s
+        //employees.stream().forEach(Main::save); 		// 27s-29s
 
         // parallel
-        employees.parallelStream().forEach(ParallelExample4::save); // 7s-8s
-
+        //employees.parallelStream().forEach(Main::save); // 7s-8s
+        
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        System.out.println(timeElapsed);
     }
 
     private static void save(Employee input) {
@@ -100,3 +126,4 @@ public class ParallelExample4 {
     }
 
 }
+
