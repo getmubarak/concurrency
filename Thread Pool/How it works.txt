@@ -1,0 +1,14 @@
+Work Queue
+Maintains a list of all the tasks which need to be performed. A work queue can be bounded (e.g. ArrayBlockingQueue) or unbounded (e.g. LinkedBlockingQueue).
+
+Workers
+As the name implies, a Worker (implements Runnable) is the one who picks the task from Work Queue and executes it. Once done, it waits for more tasks to be available in the Work Queue. The moment a task is available in the queue, it fetches it and starts executing it. This cycle/loop keeps on going until an exceptional termination condition has been met or no more tasks are available based on one of the two conditions (in the given order):
+
+till keep alive time if either idle thread timeout has been defined or worker count is more than core pool size
+until a new task is available in the queue
+The maximum number of workers allowed can be Integer.MAX_VALUE.
+
+Note: ThreadPoolExecutor in Java has limited this to 29 bits, (2^29)–1 as it uses the last 3 bits of the same integer field to keep track of its own state.
+
+Thread Factory
+A Thread Factory is used to create new threads which are required to run the workers. Each Worker runs in a different thread. Basically, when a thread’s start method is called, it calls run method overridden by the Worker which takes the Worker in a task execution loop as mentioned above.
