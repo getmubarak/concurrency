@@ -1,3 +1,14 @@
+Thread:
+
+Creating a Thread is far slower than using Thread-pool.
+You can change the priority of a thread.
+The max number of threads in a process related to resources.
+Using Thread is a better option when the task is relatively long-running
+
+Thread-Pool:
+
+Running a Thread on thread-pool is far faster than directly creating a Thread.
+The Thread-pool is useful for short-lived operation.
 
 Single Thread Executor : A thread pool with only one thread. So all the submitted tasks will be executed sequentially. Method : Executors.newSingleThreadExecutor()
 
