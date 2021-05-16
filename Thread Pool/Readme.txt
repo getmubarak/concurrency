@@ -19,3 +19,12 @@ Fixed Thread Pool : A thread pool with a fixed number of threads. If a thread is
 Scheduled Thread Pool : A thread pool made to schedule future task. Method : Executors.newScheduledThreadPool()
 
 Single Thread Scheduled Pool : A thread pool with only one thread to schedule future task. Method : Executors.newSingleThreadScheduledExecutor()
+
+
+
+
+Runnable vs Callable
+
+A Callable<V> instance returns a result of type V, whereas a Runnable instance doesn't.
+A Callable<V> instance may throw checked exceptions, whereas a Runnable instance can't
+We can not pass/use Callable to an individual thread for execution i.e. Callable can be used only in Executor Framework. But, Runnable can be passed to an individual thread for execution (new Thread(new CustomRunnable())), as well as can be used in Executor Framework.
