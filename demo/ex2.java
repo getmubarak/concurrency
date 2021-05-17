@@ -50,7 +50,7 @@ class Employee implements Serializable {
 
 }
 
-public class Main {
+public class MainAbc {
 
     private static final String DIR = System.getProperty("user.dir") + "/test/";
 
@@ -59,12 +59,13 @@ public class Main {
     	long start = System.currentTimeMillis();
         
     	Files.createDirectories(Paths.get(DIR));
-    	  Main obj = new Main();
+    	MainAbc obj = new MainAbc();
 
         List<Employee> employees = obj.generateEmployee(10000);
 
         // normal, sequential
-        employees.stream().forEach(Main::save); 		
+        for(Employee emp : employees)
+        	save(emp); 		
         
         long finish = System.currentTimeMillis();
         long timeElapsed = finish - start;
