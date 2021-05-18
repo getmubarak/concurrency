@@ -1,4 +1,8 @@
 Thread:
+When extending the Thread class, we're not overriding any of its methods. Instead, we override the method of Runnable (which Thread happens to implement). This is a clear violation of IS-A Thread principle
+Creating an implementation of Runnable and passing it to the Thread class utilizes composition and not inheritance – which is more flexible
+After extending the Thread class, we can't extend any other class
+From Java 8 onwards, Runnables can be represented as lambda expressions
 
 Creating a Thread is far slower than using Thread-pool.
 You can change the priority of a thread.
@@ -19,8 +23,6 @@ Fixed Thread Pool : A thread pool with a fixed number of threads. If a thread is
 Scheduled Thread Pool : A thread pool made to schedule future task. Method : Executors.newScheduledThreadPool()
 
 Single Thread Scheduled Pool : A thread pool with only one thread to schedule future task. Method : Executors.newSingleThreadScheduledExecutor()
-
-
 
 
 Runnable vs Callable
