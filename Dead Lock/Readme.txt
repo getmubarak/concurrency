@@ -3,6 +3,8 @@
 
 The java JDK ships with the jps command which lists all java process ids. You can run this command like this:
 
+$ jconsole
+
 $ jps -l
 
 if you are not able to find out process id, use below command:
