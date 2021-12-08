@@ -15,6 +15,8 @@ To obtain thread dump using jstack, run the following command:
 
 $ jstack -l 85367
 
+$  jstack 20655  > /users/mubarak/Documents/threaddump.txt
+
 https://jstack.review/
 
 Thread Dump Analyzer (TDA), Samurai, etc to analyze thread dumps.
