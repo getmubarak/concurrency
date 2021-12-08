@@ -1,0 +1,38 @@
+class AsyncLogController
+{
+  AutoResetEvent autoResetEvent = new AutoResetEvent(false);
+  private ConcurrentQueue<EventInfo> messageQueue = new ConcurrentQueue<EventInfo>();
+  Thread thread;
+  LogController logController = null;
+  
+  public AsyncLogController()
+  {
+    thread = new Thread(new ThreadStart(this.ThreadMain));
+    thread.Start();
+  }
+  public void QueueLog(EventInfo eventInfo)
+  {
+    messageQueue.Enqueue(eventInfo);
+    autoResetEvent.Set();
+  }
+  private void ThreadMain()
+  {
+    logController= LogController.GetInstance();
+    while (true)
+    {
+        autoResetEvent.WaitOne();
+        DequeueLogs();
+     }
+   }
+  private void DequeueLogs()
+  {
+    while (messageQueue.Count > 0)
+    {
+      EventInfo eventInfo = null;
+      if (messageQueue.Count > 0 && messageQueue.TryDequeue(out eventInfo))
+      {
+        logController.LogNative(eventInfo);
+      }
+    }
+  }
+}
