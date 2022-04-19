@@ -22,7 +22,8 @@ public class TestThreadPool {
            Runnable worker = new WorkerThread("" + i);  
            executor.execute(worker);//calling execute method of ExecutorService  
          }  
-       executor.shutdown();  
+       executor.shutdown(); 
+       //An ExecutorService should be shut down once it is no longer needed to free up system resources and to allow graceful application shutdown.
        while (!executor.isTerminated()) {   }  
  
        System.out.println("Finished all threads");  
