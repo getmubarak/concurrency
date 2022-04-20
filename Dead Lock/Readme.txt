@@ -25,4 +25,7 @@ Thread Dump Analyzer (TDA), Samurai, etc to analyze thread dumps.
 jconsole
 
 
+VisualVM (http://visualvm.java.net/)
+YourKit (http://www.yourkit.com/)
+
 There are static analysis tools like Sonar, ThreadCheck, etc for catching concurrency bugs at compile-time by analyzing the byte code. Sonar produces reports with recommendations.
