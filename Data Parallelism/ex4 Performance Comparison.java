@@ -48,8 +48,8 @@ class Person {
 	}
 }
 
-public class ParallelStreamTester {
-	static int COLLECTION_SIZE = 100000	;
+public class Main {
+	static int COLLECTION_SIZE = 10000000	;
 	
 	private static Collection <Person> getPersonCollection (){
 		List <Person> personList = new ArrayList <Person> ();
@@ -92,24 +92,7 @@ private static void parallelStreamPerformance (Collection <Person> persons){
     System.out.println("Count = " + count + " Parallel Stream takes " + (t2-t1) + " ms\n");
 }
 	
-	private static void forkJoinPoolParallelStreamPerformance (Collection <Person> persons){
-	    long t1 = System.currentTimeMillis(), count;	    
-
-		try {
-			ForkJoinPool customThreadPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
-			count = customThreadPool.submit(
-					()-> persons.parallelStream()
-						.filter(x-> (x.getState().equals("NY") || x.getState().equals("TX")))
-	        				.filter(x-> x.getAge() > 50)
-	        					.filter(x-> x.getName().startsWith("M"))
-	        						.count()).get();
-	        long t2 = System.currentTimeMillis();
-	        
-	        System.out.println("Count = " + count + " ForkJoinPool Stream Takes= " + (t2-t1) + " ms\n");
-		} catch (InterruptedException | ExecutionException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	private static int getRandom (){
 		return new Random().ints(0, 10).findFirst().getAsInt();
@@ -117,9 +100,8 @@ private static void parallelStreamPerformance (Collection <Person> persons){
 	
 	public static void main(String[] args) {
 		Collection <Person> persons = getPersonCollection ();
-		//sequentialStreamPerformance (persons);
-		parallelStreamPerformance (persons);
-		//forkJoinPoolParallelStreamPerformance (persons);
+		sequentialStreamPerformance (persons);
+		//parallelStreamPerformance (persons);
 	}
 	
 }
